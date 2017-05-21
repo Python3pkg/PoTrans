@@ -33,7 +33,7 @@ def translate(
         if not keyfile:
             keyfile = "~/.config/potrans.key"
         if keyfile:
-            print("Reading API key from file " + keyfile)
+            print(("Reading API key from file " + keyfile))
             key = get_key_from_conffile(keyfile)
         else:
             print("No --key and no --keyfile specified!")
@@ -49,7 +49,7 @@ def translate(
             print("DBG: Debug enabled")
             print("DBG: mode translate")
         t = Translator(key, input_lang, output_lang, input_po)
-        print("Translating from {} to {}...".format(input_lang, output_lang))
+        print(("Translating from {} to {}...".format(input_lang, output_lang)))
         t.go_translate(input_lang, output_lang, debug, usemsgid)
         print("Translation finished")
     except YandexTranslateException as e:
@@ -57,12 +57,12 @@ def translate(
             print("Invalid yandex translate API key!")
             return
         else:
-            print("Error:" + str(e))
+            print(("Error:" + str(e)))
     if output_po:
-        print("Saving po-file to " + output_po)
+        print(("Saving po-file to " + output_po))
         t.save_po_file(output_po)
     if output_mo:
-        print("Saveing mo-file to " + output_mo)
+        print(("Saveing mo-file to " + output_mo))
         t.save_mo_file(output_mo)
 
 
@@ -70,9 +70,9 @@ def translate(
 @click.option("--input_po", "-i", type=click.Path(exists=True), help="Input *.po file to open")
 @click.option("--output_mo", "-o", type=click.Path(writable=True), help="Output *.mo file to write to")
 def convert(input_po, output_mo):
-    print("Reading PO file " + input_po)
+    print(("Reading PO file " + input_po))
     p = polib.pofile(input_po)
-    print("Writing MO file " + output_mo)
+    print(("Writing MO file " + output_mo))
     p.save_as_mofile(output_mo)
     print("Done")
 
@@ -83,7 +83,7 @@ def get_key_from_conffile(filename="~/.config/potrans.key"):
         raise FileNotFoundError("Key file {} not found".format(filename))
     with open(filename) as f:
         key = f.read().strip()
-        print("Using Yandex API key from file {}: {}".format(filename, key))
+        print(("Using Yandex API key from file {}: {}".format(filename, key)))
         return key
 
 if __name__ == "__main__":

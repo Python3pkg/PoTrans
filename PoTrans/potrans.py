@@ -48,7 +48,7 @@ class Translator:
         else:
             tr_text = ""
         if need_print:
-            print(text + " => " + tr_text)
+            print((text + " => " + tr_text))
         if not tr_text and return_src_if_empty_result:
             tr_text = text
         return tr_text
@@ -92,7 +92,7 @@ class Translator:
             percent = int(pos * 100 / count)
             if percent != prev_percent:
                 prev_percent = percent
-                print("### Progress: " + str(percent) + "% ###")
+                print(("### Progress: " + str(percent) + "% ###"))
 
     def save_po_file(self, dest_po_file=None):
         """
